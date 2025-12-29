@@ -85,6 +85,13 @@
         })
       );
 
+      map.addControl(
+        new maplibregl.TerrainControl({
+          source: "aist-dem-terrain-rgb",
+          exaggeration: 1, // 標高を強調する倍率
+        })
+      );
+
       /**********************************************************************
        * 道路：幅（既存ロジック維持）
        * - Width（実幅）があればそれを優先
@@ -287,7 +294,7 @@
           tileSize: 512,
           attribution:
             '<a href="https://tiles.gsj.jp/tiles/elev/tiles.html#h_land" target="_blank">' +
-            "産総研 シームレス標高タイル(陸域統合DEM)</a>",
+            "産総研 シームレス標高タイル</a>",
         });
 
         map.setTerrain({
@@ -300,7 +307,7 @@
           type: "hillshade",
           source: "aist-dem-terrain-rgb",
           paint: {
-            "hillshade-exaggeration": 0.4,
+            "hillshade-exaggeration": 0.3,
           },
         });
 
