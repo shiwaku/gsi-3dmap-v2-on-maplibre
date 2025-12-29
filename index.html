@@ -17,7 +17,7 @@
         height: 100%;
         width: 100%;
         margin: 0;
-        background: #000;
+        background: #fff;
       }
 
       #map {
@@ -45,7 +45,12 @@
 
       const map = new maplibregl.Map({
         container: "map",
-        style: "std.json",
+        // style: "std.json",
+        style: {
+          version: 8,
+          sources: {},
+          layers: [],
+        },
         zoom: 16.9,
         minZoom: 4,
         maxZoom: 23,
@@ -75,7 +80,7 @@
           compact: true,
           customAttribution:
             '<a href="https://twitter.com/shi__works" target="_blank">X(旧Twitter)</a> | ' +
-            '<a href="" target="_blank">GitHub</a> | ' +
+            '<a href="https://github.com/shiwaku/gsi-3dmap-v2-on-maplibre" target="_blank">GitHub</a> | ' +
             '<a href="https://www.gsi.go.jp/kibanjoho/mapinfo3D.html" target="_blank">国土地理院 3次元電子国土基本図 試作データ</a>',
         })
       );
@@ -286,6 +291,15 @@
         map.setTerrain({
           source: "aist-dem-terrain-rgb",
           exaggeration: 1.0,
+        });
+
+        map.addLayer({
+          id: "hillshade",
+          type: "hillshade",
+          source: "aist-dem-terrain-rgb",
+          paint: {
+            "hillshade-exaggeration": 0.4,
+          },
         });
 
         // ===== 建物（MVT） =====
